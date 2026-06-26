@@ -9,3 +9,5 @@ output "core_url" {
 output "frontend_url" {
   value = google_cloud_run_v2_service.frontend.uri
 }
+
+# redeploy trigger
