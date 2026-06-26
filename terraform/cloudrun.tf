@@ -157,7 +157,7 @@ resource "google_cloud_run_v2_service" "core" {
 # Frontend (reçoit les URLs des 2 APIs)
 # ---------------------------------------------------------------------------
 resource "google_cloud_run_v2_service" "frontend" {
-  name                = "frontend"
+  name                = "frontend-app"
   location            = var.region
   deletion_protection = false
 
