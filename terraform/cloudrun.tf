@@ -47,10 +47,12 @@ resource "google_cloud_run_v2_service" "auth" {
           path = "/healthz/ready"
           port = 8080
         }
-        initial_delay_seconds = 0
-        timeout_seconds       = 3
-        period_seconds        = 5
-        failure_threshold     = 3
+        # Tolérant au cold start de Neon (free tier en veille) : jusqu'à ~120s
+        # pour devenir prêt, mais une mauvaise config DB échoue quand même.
+        initial_delay_seconds = 5
+        timeout_seconds       = 10
+        period_seconds        = 15
+        failure_threshold     = 8
       }
       liveness_probe {
         http_get {
@@ -133,10 +135,12 @@ resource "google_cloud_run_v2_service" "core" {
           path = "/healthz/ready"
           port = 8080
         }
-        initial_delay_seconds = 0
-        timeout_seconds       = 3
-        period_seconds        = 5
-        failure_threshold     = 3
+        # Tolérant au cold start de Neon (free tier en veille) : jusqu'à ~120s
+        # pour devenir prêt, mais une mauvaise config DB échoue quand même.
+        initial_delay_seconds = 5
+        timeout_seconds       = 10
+        period_seconds        = 15
+        failure_threshold     = 8
       }
       liveness_probe {
         http_get {

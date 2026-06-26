@@ -5,7 +5,7 @@ const isLocal = (process.env.DATABASE_URL || "").includes("localhost");
 
 export const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  connectionTimeoutMillis: 5000,
+  connectionTimeoutMillis: 8000,
   // Neon impose SSL ; en local (minikube/localhost) on le désactive.
   ssl: isLocal ? false : { rejectUnauthorized: false },
 });
