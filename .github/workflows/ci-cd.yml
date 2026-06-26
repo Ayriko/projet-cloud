@@ -3,10 +3,10 @@ name: CI/CD
 on:
   push:
     branches: [dev, prod]
-    paths-ignore: ["**.md", "docs/**", ".gitignore"]
+    paths-ignore: ["**.md", "docs/**", ".gitignore", "loadtest/**"]
   pull_request:
     branches: [prod]
-    paths-ignore: ["**.md", "docs/**", ".gitignore"]
+    paths-ignore: ["**.md", "docs/**", ".gitignore", "loadtest/**"]
 
 permissions:
   contents: read
