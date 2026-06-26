@@ -51,3 +51,9 @@ variable "s3_bucket" {
   type    = string
   default = "demo-cloud-763749302763-eu-west-3-an"
 }
+
+variable "alert_email" {
+  description = "Adresse email qui reçoit les alertes Cloud Monitoring"
+  type        = string
+  default     = "aymeric.moiska@gmail.com"
+}

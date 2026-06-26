@@ -88,12 +88,22 @@ resource "google_monitoring_uptime_check_config" "svc" {
   }
 }
 
+# --- Canal de notification (email) ---
+resource "google_monitoring_notification_channel" "email" {
+  display_name = "Email alerts"
+  type         = "email"
+  labels = {
+    email_address = var.alert_email
+  }
+}
+
 # --- Alert policies (alerte si un service ne répond plus) ---
 resource "google_monitoring_alert_policy" "svc_down" {
   for_each = local.uptime_targets
 
-  display_name = "${each.key} down"
-  combiner     = "OR"
+  display_name          = "${each.key} down"
+  combiner              = "OR"
+  notification_channels = [google_monitoring_notification_channel.email.id]
 
   conditions {
     display_name = "${each.key} uptime failing"
